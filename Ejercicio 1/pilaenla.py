@@ -1,0 +1,50 @@
+class Nodo:
+    __dato = None
+    __siguiente = None
+    def __init__(self,dato):
+        self.__dato = dato
+        self.__siguiente = None
+    def setsiguiente(self,sig):
+        self.__siguiente = sig
+    def getDato(self):
+        return self.__dato
+    def getsiguiente(self):
+        return self.__siguiente
+
+class Pilaanidada:
+    __cabeza = None
+    __cant = None
+    __tope = None
+    def __init__(self,cant=0,tope=None, cabeza=None):
+        self.__cant = cant
+        self.__tope = tope
+    def vacia(self):
+        band = False
+        if self.__cant == 0:
+            band = True
+        else:
+            band = False
+        return band
+    def insertar(self,x):
+        nodo = Nodo(x)
+        nodo.setsiguiente(self.__tope)
+        self.__tope = nodo
+        self.__cant+=1
+        return nodo.getDato()
+    def suprimir(self):
+        if self.vacia():
+            print('Esta vacia')
+        else:
+            aux= self.__tope
+            x = self.__tope.getDato()
+            self.__tope = self.__tope.getsiguiente()
+            self.__cant-=1
+            del aux
+        return x
+
+    def mostrar(self):
+        if not self.vacia():
+            while self.__cant > 0:
+             print(self.suprimir())
+        else:
+            print('Pila vacia')
